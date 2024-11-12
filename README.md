@@ -4,7 +4,7 @@ PBP B
 
 <details>
 <summary>
-  <span style="font-size:16px;"><b>Tugas 7 PBP</b></span>
+  <span style="font-size:18px;"><b>Tugas 7 PBP</b></span>
 </summary>
 
 ## Jelaskan apa yang dimaksud dengan stateless widget dan stateful widget, dan jelaskan perbedaan dari keduanya.
@@ -231,3 +231,79 @@ Widget build(BuildContext context) {
   );
 }
 ```
+</details>
+
+<details>
+<summary>
+  <span style="font-size:18px;"><b>Tugas 8 PBP</b></span>
+</summary>
+
+## Apa kegunaan `const` di Flutter? Jelaskan apa keuntungan ketika menggunakan `const` pada kode Flutter. Kapan sebaiknya kita menggunakan `const`, dan kapan sebaiknya tidak digunakan?
+`const` digunakan untuk mengoptimalkan memori dan meningkatkan performa. `const` dapat membuat objek yang immutable, atau tidak bisa diubah setelah diinisialisasi, yang biasa digunakan untuk widget atau elemen UI yang statis. Flutter memiliki keuntungan, seperti efisiensi memori. Objek yang dideklarasikan dengan `const` hanya dibuat sekali dan digunakan kembali sehingga menghemat penggunaan memori dan mempercepat rendering UI, karena widget yang ditandai dengan const tidak perlu di-rebuild setiap kali tampilan di-refresh. Karena objek dihitung saat waktu kompilasi, aplikasi berjalan lebih cepat karena tidak perlu membuat ulang objek tersebut setiap kali widget di-render.
+
+Kita sebaiknya menggunakan const untuk widget atau objek yang tidak berubah selama runtime aplikasi. Misalnya, ketika mendefinisikan teks, padding, atau ikon yang bersifat tetap. Contoh penggunaan const yang tepat berdasarkan proyek ini adalah:
+'''
+  const Padding(
+    padding: EdgeInsets.only(top: 16.0),
+    child: Text(
+      'Welcome to Sugeng Avenue!',
+      style: TextStyle(
+        fontWeight: FontWeight.bold,
+        fontSize: 18.0,
+      ),
+    ),
+  ),
+'''
+Pada kode di atas, `const` digunakan untuk `Padding` karena isi pada `Padding`, terdapat `Text` dan `TextStyle` yang tidak akan berubah selama aplikasi berjalan. `const` sebaiknya tidak digunakan jika widget atau objek memerlukan data yang dapat berubah selama runtime.
+
+## Jelaskan dan bandingkan penggunaan Column dan Row pada Flutter. Berikan contoh implementasi dari masing-masing layout widget ini!
+Column adalah widget layout yang menyusun children-nya secara vertikal dari atas ke bawah. Sedangkan, Row adalah widget layout yang menyusun children-nya secara horizontal dari kiri ke kanan. Perbedaan dari keduanya hanya terdapat pada cara masing-masing widget ini menyusun children-nya.
+
+Contoh implementasi Column :
+```
+Column(
+  mainAxisAlignment: MainAxisAlignment.center,
+  crossAxisAlignment: CrossAxisAlignment.start,
+  children: <Widget>[
+    Text('Item 1'),
+    Text('Item 2'),
+    Text('Item 3'),
+  ],
+)
+```
+
+Contoh implementasi Row : 
+```
+Row(
+  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+  crossAxisAlignment: CrossAxisAlignment.center,
+  children: <Widget>[
+    Text('Item A'),
+    Text('Item B'),
+    Text('Item C'),
+  ],
+)
+```
+
+## Sebutkan apa saja elemen input yang kamu gunakan pada halaman form yang kamu buat pada tugas kali ini. Apakah terdapat elemen input Flutter lain yang tidak kamu gunakan pada tugas ini? Jelaskan!
+Elemen input yang saya gunakan pada halaman form adalah `TextFormField` yang berguna untuk input text seperti nama product, deskripsi, dan amount. Setelah itu, saya menggunakan `ElevatedButton` yang berguna untuk tombol aksi seperti menyimpan data.
+
+Elemen input yang tidak saya gunakan pada tugas ini adalah :
+- Radio : untuk memilih satu opsi dari beberapa pilihan
+- Switch : untuk input boolean yang dapat diaktifkan atau dinonaktifkan
+- Dropdown Button : untuk memilih satu opsi dari daftar dropdown
+
+## Bagaimana cara kamu mengatur tema (theme) dalam aplikasi Flutter agar aplikasi yang dibuat konsisten? Apakah kamu mengimplementasikan tema pada aplikasi yang kamu buat?
+Untuk mengatur tema dalam aplikasi yang saya buat, saya menggunakan `ThemeData` dan `ColorScheme` di dalam widget `MaterialApp` dan di dalam file `main.dart`. Warna yang digunakan dalam aplikasi ini terdapat pada `main.dart`:
+```
+...
+colorScheme: ColorScheme.fromSwatch(
+  primarySwatch: Colors.blue,
+  ).copyWith(secondary: Colors.blue[800]),
+  useMaterial3: true,
+...
+
+``` 
+
+## Bagaimana cara kamu menangani navigasi dalam aplikasi dengan banyak halaman pada Flutter?
+Menangani navigasi dalam aplikasi dengan banyak halaman dapat dilakukan dengan menggunakan `Navigator` dan `MaterialPageRoute`. Dalam aplikasi ini, saya menggunakan `Navigator.push()` dan `Navigator.pop()`. `Navigator.push()` dapat menambahkan halaman baru ke stack navigasi, kemudian halaman baru tersebut berada di atas halaman sebelumnya, sehingga user dapat menggunakan button 'back' untuk kembali ke halaman sebelumnya. Selain itu, `Navigator.pop()` dapat menghapus halaman yang berada di paling atas stack dan kembali ke halaman selanjutnya.
