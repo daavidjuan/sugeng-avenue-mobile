@@ -242,7 +242,7 @@ Widget build(BuildContext context) {
 `const` digunakan untuk mengoptimalkan memori dan meningkatkan performa. `const` dapat membuat objek yang immutable, atau tidak bisa diubah setelah diinisialisasi, yang biasa digunakan untuk widget atau elemen UI yang statis. Flutter memiliki keuntungan, seperti efisiensi memori. Objek yang dideklarasikan dengan `const` hanya dibuat sekali dan digunakan kembali sehingga menghemat penggunaan memori dan mempercepat rendering UI, karena widget yang ditandai dengan const tidak perlu di-rebuild setiap kali tampilan di-refresh. Karena objek dihitung saat waktu kompilasi, aplikasi berjalan lebih cepat karena tidak perlu membuat ulang objek tersebut setiap kali widget di-render.
 
 Kita sebaiknya menggunakan const untuk widget atau objek yang tidak berubah selama runtime aplikasi. Misalnya, ketika mendefinisikan teks, padding, atau ikon yang bersifat tetap. Contoh penggunaan const yang tepat berdasarkan proyek ini adalah:
-'''
+```
   const Padding(
     padding: EdgeInsets.only(top: 16.0),
     child: Text(
@@ -253,7 +253,7 @@ Kita sebaiknya menggunakan const untuk widget atau objek yang tidak berubah sela
       ),
     ),
   ),
-'''
+```
 Pada kode di atas, `const` digunakan untuk `Padding` karena isi pada `Padding`, terdapat `Text` dan `TextStyle` yang tidak akan berubah selama aplikasi berjalan. `const` sebaiknya tidak digunakan jika widget atau objek memerlukan data yang dapat berubah selama runtime.
 
 ## Jelaskan dan bandingkan penggunaan Column dan Row pada Flutter. Berikan contoh implementasi dari masing-masing layout widget ini!
